@@ -24,13 +24,15 @@ You can specify multiple PRs as well::
                     https://github.com/fred/crap/pull/456 [niftier_module:
                     repair steering wheel in the cdr car]
 
-You can also specify the full URL to one PR, in which case you'll get the
-subject pasted back as well::
+You can also specify a project other than the defaults to search::
 
-  03:14 < fred> https://github.com/fred/crap/pull/123
+  03:14 < fred> PR fred/crap 123
   03:14 <@helgabot> fred might be talking about
                     https://github.com/fred/crap/pull/123 [nifty_module: 
                     fix frobnicator to fizz the buzzer]
+
+All projects specified in GITHUB_PROJECT are searched and the first open PR
+found is returned. If no open PRs are found, the first closed PR is returned.
 
 Installation
 ------------
@@ -43,9 +45,14 @@ you are running Helga, clone a copy of this repository from GitHub and run
 Configuration
 -------------
 In your ``settings.py`` file (or whatever you pass to ``helga --settings``),
-you must specify a ``GITHUB_PROJECT``. For example::
+you must specify a list called ``GITHUB_PROJECTS``. Note that a list is
+required even for a single project. For example::
 
-  GITHUB_PROJECT = "fred/crap"
+  GITHUB_PROJECT = [ 'fred/crap', 'fifi/blah' ]
+
+or::
+
+  GITHUB_PROJECT = [ 'fred/crap' ]
 
 Credits
 -------
